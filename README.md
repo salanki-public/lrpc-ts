@@ -18,61 +18,52 @@ A JSON based RPC library (not JSON RPC)
 
 ```typescript
 
-		type Func3Input =
-			{
-				field1: number;
-				arr: string[];
-				something:
-				{
-					a: number;
-					b: number;
-				}
-			}
+import * as http from 'http';
+import express = require('express');
 
-		interface ITestAPI
-		{
-			func1(s: string): Promise<string>;
-			func2(): Promise<void>;
-			func3(input: Func3Input): Promise<number[]>;
-		}
+interface ITestAPI
+{
+	func1(s: string): Promise<string>;
+	func2(): Promise<void>;
+}
 
-		class TestImpl implements ITestAPI
-		{
-			async func1(s: string): Promise<string>
-			{
-				return "Hello " + s;
-			}
+class TestImpl implements ITestAPI
+{
+	async func1(s: string): Promise<string>
+	{
+		return "Hello " + s;
+	}
 
-			async func2(): Promise<void>
-			{
-				console.log('Func2 called');
-			}
+	async func2(): Promise<void>
+	{
+		console.log('Func2 called');
+	}
+}
 
-			async func3(input: Func3Input): Promise<number[]>
-			{
-				console.log('Another dummy function');
-				return [];
-			}
-		}
+let target = new TestImpl();
 
-		let target = new TestImpl();
+let lrpcServer = new lrpc.LRPCServer();
+lrpc.addFunctionsToLRPCServer(lrpcServer, target);
 
-		let lrpcServer = new lrpc.LRPCServer();
-		lrpc.addFunctionsToLRPCServer(lrpcServer, target);
+let app = express();
+app.use(express.json());
+app.post("/",lrpcServer.express());
+let server = http.createServer(app);
+server.listen(3000, "localhost");
 
-		let app = express();
-		app.use(express.json());
-		app.post("/",lrpcServer.express());
-		let server = http.createServer(app);
-		server.listen(3000, "localhost");
-
-		let client = lrpc.createLRPCClientInterface<ITestAPI>(
-			new lrpc.LRPCClient(
-				new lrpc.LRPCClientFetchTransport("http://localhost:3000")
-			)
-		);
+let client = lrpc.createLRPCClientInterface<ITestAPI>(
+	new lrpc.LRPCClient(
+		new lrpc.LRPCClientFetchTransport("http://localhost:3000")
+	)
+);
 
 
 ```
 
 ## Installation
+
+
+## Error handling
+
+## Transport layer
+
