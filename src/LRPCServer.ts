@@ -10,9 +10,9 @@ export class LRPCServer
 
 	express()
 	{
-		return (req: any, res: any) =>
+		return async (req: any, res: any) =>
 		{
-			res.json(this.processLRPCRequest(req.body));
+			res.json(await this.processLRPCRequest(req.body));
 		}
 	}
 

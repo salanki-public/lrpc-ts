@@ -28,7 +28,7 @@ export class LRPCClient
 		response = await this.lrpcClientTransport.callFunction(request);
 
 		if (!response) common.throwLRPCBuiltInError(common.ErrorCodes.E_RESPONSE_IS_EMPTY);
-		if (response.lrpc !== common.LRPC_STRING) common.throwLRPCBuiltInError(common.ErrorCodes.E_REQUEST_LRPC_FIELD_ERROR);
+		if (response.lrpc !== common.LRPC_STRING) common.throwLRPCBuiltInError(common.ErrorCodes.E_RESPONSE_LRPC_FIELD_ERROR);
 		if (!response.status)
 		{
 			if (response.error) throw response.error;

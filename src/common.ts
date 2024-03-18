@@ -1,10 +1,17 @@
 
+/** Function type */
 export type LRPCFunction = (arg?: any) => Promise<any>;
 
+/** The fields of an LRPC request */
 export type LRPCRequest =
 	{
+		/** Must be 'lrpc' */
 		lrpc: string;
+
+		/** The name of the function to call */
 		functionName: string;
+
+		/** The argument to pass to the function */
 		arg?: any;
 	}
 
