@@ -1,14 +1,26 @@
 {
-  "name": "lrpc-ts",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "Unlicense",
-  "dependencies": {
-    "@types/node": "^20.11.28"
-  }
+	"name": "lrpc-ts",
+	"version": "1.0.0",
+	"description": "Lightweight RPC for TypeScript",
+	"main": "build/index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Csaba Salanki",
+	"license": "Unlicense",
+	"readme": "README.md",
+	"repository": 
+	{
+		"type": "git",
+		"url": "https://github.com/salanki-public/lrpc-ts.git"
+	},
+	"keywords": 
+	[
+		"lrpc",
+		"rpc",
+		"TypeScript"
+	],
+	"dependencies": {
+		"@types/node": "^20.11.28"
+	}
 }
